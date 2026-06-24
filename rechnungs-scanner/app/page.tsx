@@ -77,10 +77,10 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white p-6">
+    <main className="min-h-screen p-6" style={{background: "linear-gradient(135deg, #f9e4e4 0%, #f5d5cc 50%, #ecddd8 100%)"}}>
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-white">Rechnungs-Scanner</h1>
-        <p className="text-gray-400 mb-8">Lade eine Rechnung hoch – KI extrahiert alle Daten automatisch.</p>
+        <h1 className="text-3xl font-bold mb-2 text-[#8b5e5e]">Rechnungs-Scanner</h1>
+        <p className="text-[#a07878] mb-8">Lade eine Rechnung hoch – KI extrahiert alle Daten automatisch.</p>
 
         {/* Upload Zone */}
         <div
@@ -88,8 +88,9 @@ export default function Home() {
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
           className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-all ${
-            dragOver ? "border-blue-400 bg-blue-950" : "border-gray-700 hover:border-gray-500"
+            dragOver ? "border-[#d4938a] bg-[#f5e0dc]" : "border-[#d4b0aa] hover:border-[#c49090]"
           }`}
+          style={{background: "rgba(255,255,255,0.5)"}}
           onClick={() => document.getElementById("fileInput")?.click()}
         >
           <input
@@ -100,12 +101,12 @@ export default function Home() {
             onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
           />
           {file ? (
-            <p className="text-green-400 font-medium">✓ {file.name}</p>
+            <p className="text-[#8b5e5e] font-medium">✓ {file.name}</p>
           ) : (
             <>
               <p className="text-4xl mb-3">📄</p>
-              <p className="text-gray-300">Rechnung hier ablegen oder klicken</p>
-              <p className="text-gray-500 text-sm mt-1">JPG, PNG, PDF</p>
+              <p className="text-[#8b5e5e]">Rechnung hier ablegen oder klicken</p>
+              <p className="text-[#a07878] text-sm mt-1">JPG, PNG, PDF</p>
             </>
           )}
         </div>
@@ -113,21 +114,22 @@ export default function Home() {
         <button
           onClick={handleScan}
           disabled={!file || loading}
-          className="mt-4 w-full py-3 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="mt-4 w-full py-3 rounded-xl font-semibold text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          style={{background: "linear-gradient(135deg, #c4827a, #d4938a)"}}
         >
           {loading ? "Analysiere..." : "Rechnung scannen"}
         </button>
 
         {error && (
-          <div className="mt-6 p-4 bg-red-950 border border-red-700 rounded-xl text-red-300">
+          <div className="mt-6 p-4 rounded-xl text-[#8b3a3a]" style={{background: "rgba(255,200,200,0.5)", border: "1px solid #d4938a"}}>
             Fehler: {error}
           </div>
         )}
 
         {result && (
           <div className="mt-8 space-y-6">
-            <section className="bg-gray-900 rounded-xl p-5">
-              <h2 className="text-lg font-semibold mb-4 text-blue-400">Rechnungsdaten</h2>
+            <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
+              <h2 className="text-lg font-semibold mb-4 text-[#c4827a]">Rechnungsdaten</h2>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <Field label="Rechnungsnummer" value={result.rechnungsnummer} />
                 <Field label="Datum" value={result.datum} />
@@ -146,8 +148,8 @@ export default function Home() {
                   <Field label="Telefon" value={result.absender.telefon} />
                 </div>
               </section>
-              <section className="bg-gray-900 rounded-xl p-5">
-                <h2 className="text-lg font-semibold mb-3 text-blue-400">Empfänger</h2>
+              <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
+                <h2 className="text-lg font-semibold mb-3 text-[#c4827a]">Empfänger</h2>
                 <div className="space-y-2 text-sm">
                   <Field label="Name" value={result.empfaenger.name} />
                   <Field label="Adresse" value={result.empfaenger.adresse} />
@@ -156,11 +158,11 @@ export default function Home() {
             </div>
 
             {result.positionen?.length > 0 && (
-              <section className="bg-gray-900 rounded-xl p-5">
-                <h2 className="text-lg font-semibold mb-4 text-blue-400">Positionen</h2>
+              <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
+                <h2 className="text-lg font-semibold mb-4 text-[#c4827a]">Positionen</h2>
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-gray-400 border-b border-gray-700">
+                    <tr className="text-[#a07878] border-b border-[#d4b0aa]">
                       <th className="text-left pb-2">Beschreibung</th>
                       <th className="text-right pb-2">Menge</th>
                       <th className="text-right pb-2">Einzelpreis</th>
@@ -169,11 +171,11 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {result.positionen.map((p, i) => (
-                      <tr key={i} className="border-b border-gray-800">
-                        <td className="py-2">{p.beschreibung}</td>
-                        <td className="text-right py-2 text-gray-300">{p.menge ?? "-"}</td>
-                        <td className="text-right py-2 text-gray-300">{p.einzelpreis ?? "-"}</td>
-                        <td className="text-right py-2 text-gray-300">{p.gesamtpreis ?? "-"}</td>
+                      <tr key={i} className="border-b border-[#e8ccc8]">
+                        <td className="py-2 text-[#8b5e5e]">{p.beschreibung}</td>
+                        <td className="text-right py-2 text-[#a07878]">{p.menge ?? "-"}</td>
+                        <td className="text-right py-2 text-[#a07878]">{p.einzelpreis ?? "-"}</td>
+                        <td className="text-right py-2 text-[#a07878]">{p.gesamtpreis ?? "-"}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -181,12 +183,12 @@ export default function Home() {
               </section>
             )}
 
-            <section className="bg-gray-900 rounded-xl p-5">
-              <h2 className="text-lg font-semibold mb-4 text-blue-400">Beträge</h2>
+            <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
+              <h2 className="text-lg font-semibold mb-4 text-[#c4827a]">Beträge</h2>
               <div className="space-y-2 text-sm">
                 <Field label="Zwischensumme" value={result.zwischensumme} />
                 <Field label="Steuer" value={result.steuer} />
-                <div className="flex justify-between pt-2 border-t border-gray-700 font-bold text-white text-base">
+                <div className="flex justify-between pt-2 border-t border-[#d4b0aa] font-bold text-[#8b5e5e] text-base">
                   <span>Gesamtbetrag</span>
                   <span>{result.gesamtbetrag ?? "-"} {result.waehrung ?? ""}</span>
                 </div>
@@ -202,8 +204,8 @@ export default function Home() {
 function Field({ label, value }: { label: string; value: string | null | undefined }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-gray-500 text-xs uppercase tracking-wide">{label}</span>
-      <span className="text-gray-200">{value ?? "-"}</span>
+      <span className="text-[#a07878] text-xs uppercase tracking-wide">{label}</span>
+      <span className="text-[#8b5e5e]">{value ?? "-"}</span>
     </div>
   );
 }
