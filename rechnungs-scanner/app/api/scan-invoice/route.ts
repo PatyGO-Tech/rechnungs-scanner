@@ -1,10 +1,10 @@
-import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType, type Schema } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 // Erzwingt exakt diese Felder als Structured Output (kein Fließtext möglich)
-const RESPONSE_SCHEMA = {
+const RESPONSE_SCHEMA: Schema = {
   type: SchemaType.OBJECT,
   properties: {
     rechnungsnummer: { type: SchemaType.STRING, nullable: true },
