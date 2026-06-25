@@ -139,20 +139,20 @@ export default function Home() {
             </section>
 
             <div className="grid grid-cols-2 gap-4">
-              <section className="bg-gray-900 rounded-xl p-5">
-                <h2 className="text-lg font-semibold mb-3 text-blue-400">Absender</h2>
+              <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
+                <h2 className="text-lg font-semibold mb-3 text-[#c4827a]">Absender</h2>
                 <div className="space-y-2 text-sm">
-                  <Field label="Name" value={result.absender.name} />
-                  <Field label="Adresse" value={result.absender.adresse} />
-                  <Field label="E-Mail" value={result.absender.email} />
-                  <Field label="Telefon" value={result.absender.telefon} />
+                  <Field label="Name" value={result.absender?.name} />
+                  <Field label="Adresse" value={result.absender?.adresse} />
+                  <Field label="E-Mail" value={result.absender?.email} />
+                  <Field label="Telefon" value={result.absender?.telefon} />
                 </div>
               </section>
               <section className="rounded-xl p-5" style={{background: "rgba(255,255,255,0.6)"}}>
                 <h2 className="text-lg font-semibold mb-3 text-[#c4827a]">Empfänger</h2>
                 <div className="space-y-2 text-sm">
-                  <Field label="Name" value={result.empfaenger.name} />
-                  <Field label="Adresse" value={result.empfaenger.adresse} />
+                  <Field label="Name" value={result.empfaenger?.name} />
+                  <Field label="Adresse" value={result.empfaenger?.adresse} />
                 </div>
               </section>
             </div>
