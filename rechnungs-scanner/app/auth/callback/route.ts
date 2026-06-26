@@ -12,6 +12,16 @@ export async function GET(request: Request) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      // Hinter einem Proxy (lowcloud) ist die echte öffentliche Adresse im
+      // Header x-forwarded-host. Ohne diesen Fix würde auf eine interne
+      // Container-Adresse umgeleitet und die Session ginge verloren.
+      const forwardedHost = request.headers.get("x-forwarded-host");
+      const forwardedProto = request.headers.get("x-forwarded-proto") ?? "https";
+      const isLocalEnv = process.env.NODE_ENV === "development";
+
+      if (!isLocalEnv && forwardedHost) {
+        return NextResponse.redirect(`${forwardedProto}://${forwardedHost}${next}`);
+      }
       return NextResponse.redirect(`${origin}${next}`);
     }
   }
