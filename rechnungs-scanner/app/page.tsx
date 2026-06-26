@@ -176,7 +176,7 @@ export default function Home() {
       <div className="max-w-3xl mx-auto">
         <div className="flex justify-between items-start mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-2 text-[#8b5e5e]">Rechnungs-Scanner</h1>
+            <h1 className="text-3xl font-bold mb-2 text-[#8b5e5e]">Bill-Scan</h1>
             <p className="text-[#a07878]">Lade eine Rechnung hoch – KI extrahiert alle Daten automatisch.</p>
           </div>
           <button
