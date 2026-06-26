@@ -45,7 +45,7 @@ export default function LoginPage() {
       style={{ background: "linear-gradient(135deg, #f9e4e4 0%, #f5d5cc 50%, #ecddd8 100%)" }}
     >
       <div className="w-full max-w-md rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.7)" }}>
-        <h1 className="text-2xl font-bold mb-1 text-[#8b5e5e]">Bill-Scan</h1>
+        <h1 className="text-2xl font-bold mb-1 text-[#8b5e5e]">SCAN.BILL</h1>
         <p className="text-[#a07878] mb-6 text-sm">Melde dich an, um deine Rechnungen zu sehen.</p>
 
         <form onSubmit={handleLogin} className="space-y-4">

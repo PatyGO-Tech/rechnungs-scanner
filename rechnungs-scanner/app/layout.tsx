@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bill-Scan – KI-Rechnungs-Scanner",
+  title: "SCAN.BILL – KI-Rechnungs-Scanner",
   description: "Rechnungen hochladen, KI liest alle Daten automatisch aus.",
 };
 
